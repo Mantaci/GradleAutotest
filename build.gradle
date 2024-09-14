@@ -1,0 +1,38 @@
+plugins {
+    id 'java'
+    id 'io.qameta.allure' version '2.10.0' // specify the version of the Allure plugin
+}
+
+group = 'org.study'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    maven { url "https://plugins.gradle.org/m2/" }
+}
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'io.qameta.allure'
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        testImplementation "org.junit.jupiter:junit-jupiter-api:5.11.0"
+        testImplementation "org.junit.jupiter:junit-jupiter-engine:5.11.0"
+        testImplementation "io.qameta.allure:allure-junit5:2.25.0"
+    }
+
+    test {
+        useJUnitPlatform()
+    }
+}
+
+
+task smokeTests(type: Test) {
+    useJUnitPlatform {
+        includeTags 'Smoke'
+    }
+}

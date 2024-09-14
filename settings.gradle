@@ -1,0 +1,3 @@
+rootProject.name = 'GradleAutotest'
+include 'api-test'
+include 'ui-test'
